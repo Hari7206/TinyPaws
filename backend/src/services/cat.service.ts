@@ -4,20 +4,20 @@ import CatModel from "../models/cat.model.js"
 
 
 export const createCatService = async (payload: object) => {
-      return await CatModel.create(payload);
+  return await CatModel.create(payload);
 }
 
 
 
 
 export const getAllCatsService = async () => {
-      return await CatModel.find()
+  return await CatModel.find()
 }
 
 
 
 export const getSingleCatService = async (id: string) => {
-      return await CatModel.findById(id)
+  return await CatModel.findById(id)
 }
 
 
@@ -40,3 +40,10 @@ export const searchCatsService = async (query: string) => {
     ]
   });
 };
+
+export const recommendService = async (query: { kidsFriendly: boolean, apartmentFriendly: boolean }) => {
+  return await CatModel.find({
+    kidsFriendly: query.kidsFriendly,
+    apartmentFriendly: query.apartmentFriendly
+  });
+}
