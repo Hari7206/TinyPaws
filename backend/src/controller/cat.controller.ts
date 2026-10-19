@@ -68,17 +68,15 @@ export const searchCatsController = async (req: Request, res: Response) => {
 }
 
 
+
 export const recommendCatsController = async (req: Request, res: Response) => {
-       const { kidsFriendly, apartmentFriendly } = req.query;
+  const { kidsFriendly, apartmentFriendly } = req.body;
 
-    let result = await recommendService({
-      kidsFriendly: kidsFriendly === 'true',
-      apartmentFriendly: apartmentFriendly === 'true'
-    });
+  const result = await recommendService(kidsFriendly, apartmentFriendly);
 
-    return res.status(200).json({
-        success: true,
-        message: "Recommended cats retrieved successfully",
-        data: result
-    });
-}
+  return res.status(200).json({
+    success: true,
+    message: "Cat fetched",
+    data: result,
+  });
+};

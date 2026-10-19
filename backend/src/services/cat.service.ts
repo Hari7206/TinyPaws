@@ -41,9 +41,12 @@ export const searchCatsService = async (query: string) => {
   });
 };
 
-export const recommendService = async (query: { kidsFriendly: boolean, apartmentFriendly: boolean }) => {
+export const recommendService = async (
+  kidsFriendly: boolean,
+  apartmentFriendly: boolean
+) => {
   return await CatModel.find({
-    kidsFriendly: query.kidsFriendly,
-    apartmentFriendly: query.apartmentFriendly
+    kidsFriendly,
+    apartmentFriendly,
   });
-}
+};
