@@ -15,7 +15,7 @@ export const testMcpController = async (req: Request, res: Response) => {
     })
 
     const textContent = result.content.find(
-  (item) => item.type   "text"
+  (item) => item.type === "text"
 );
 
 if (!textContent) {
