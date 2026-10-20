@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
-import { recommendCatsTool } from "./tools/recommendCats.tool.ts";
+import { getAllCatsTool, recommendCatsTool } from "./tools/recommendCats.tool.ts";
 
 const NWS_API_BASE = "https://api.weather.gov";
 const USER_AGENT = "weather-app/1.0";
@@ -31,6 +31,29 @@ async ({kidsFriendly, apartmentFriendly}) => {
     };
 }
 )
+
+
+server.registerTool("get_all_cats", {
+    title: "Get All Cats",
+    description: "Retrieves a list of all available cat breeds.",
+},
+async () => {
+    const result = await getAllCatsTool();
+    return {
+        content: [
+            {
+                type: "text",
+                text: JSON.stringify(result)
+            }
+        ]
+    };
+}
+)
+
+
+
+
+
 
 const transporter = new StdioServerTransport();
 
